@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Visualizando usuários</title>
+</head>
+<body>
+  <h2>Visualizando usuários</h2>
+  <p><button><a href="/">Voltar</a></button></p>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% collection.forEach(function(details) { %>
+        <tr>
+          <form action="/item/<%= details._id %>?_method=PUT" method="POST">
+          <td><input type="text" name="nome" value="<%= details.nome %>"></td>
+          <td><input type="number" name="idade" value="<%= details.idade %>"></td>
+          <td><input type="text" name="status" value="<%= details.status %>"></td>
+          <td><%= details._id %></td>
+          <td>
+            
+              <input type="hidden" name="_method" value="PUT">
+              <input type="submit" value="UP">
+          </form>
+            </td>
+            <td>
+            <form action="/item/<%= details._id %>?_method=DELETE" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="X">
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+      
+    </tbody>
+    </table>
+</body>
+</html>
